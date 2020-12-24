@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="jest tests" tests="9" failures="0" time="3.826">
+  <testsuite name="Rendering Test" errors="0" failures="0" skipped="0" timestamp="2020-12-24T11:08:41" time="2.942" tests="9">
+    <testcase classname="Rendering Test Calendar heading exists" name="Rendering Test Calendar heading exists" time="0.069">
+    </testcase>
+    <testcase classname="Rendering Test Rendering correct year and Month in respective tags" name="Rendering Test Rendering correct year and Month in respective tags" time="0.029">
+    </testcase>
+    <testcase classname="Rendering Test Rendering correct table" name="Rendering Test Rendering correct table" time="0.065">
+    </testcase>
+    <testcase classname="Event Firing Tests Testing year Change to year 2050" name="Event Firing Tests Testing year Change to year 2050" time="0.049">
+    </testcase>
+    <testcase classname="Event Firing Tests Testing month change to January" name="Event Firing Tests Testing month change to January" time="0.027">
+    </testcase>
+    <testcase classname="Event Firing Tests Testing previous month Button" name="Event Firing Tests Testing previous month Button" time="0.024">
+    </testcase>
+    <testcase classname="Event Firing Tests Testing next month Button" name="Event Firing Tests Testing next month Button" time="0.029">
+    </testcase>
+    <testcase classname="Event Firing Tests Testing next year Button" name="Event Firing Tests Testing next year Button" time="0.021">
+    </testcase>
+    <testcase classname="Event Firing Tests Testing previous year Button" name="Event Firing Tests Testing previous year Button" time="0.034">
+    </testcase>
+  </testsuite>
+</testsuites>

@@ -12,20 +12,28 @@ export default function App() {
   let completeTable = [];
   let oneRow = [];
   let totalCells = [];
+  let cellNumber = 1;
 
   for(let i = 0;i<gapsToBeLeft() ; i++)
-    totalCells.push(<td className = "border border-secondary" key={(i+1)*101}>{""}</td>);
-
+  {
+    const id = "cell" + cellNumber;
+    totalCells.push(<td className = "border border-secondary" key={cellNumber} id ={id}>{""}</td>) , cellNumber++;
+  }
   for(let i = 1;i<=daysInMonth(); i++)
   {
+    const id = "cell" + cellNumber;
     if(i===selectedCurrentDate())
-    totalCells.push(<td className = "border border-secondary bg-info" key = {(i)*103}>{i}</td>);
+    totalCells.push(<td className = "border border-secondary bg-info" key={cellNumber} id ={"today"}>{i}</td>);
     else
-    totalCells.push(<td className = "border border-secondary" key = {(i)*103}>{i}</td>);
+    totalCells.push(<td className = "border border-secondary" key={cellNumber} id ={id}>{i}</td>);
+    cellNumber++;
   }
 
   for(let i = Number(gapsToBeLeft())+Number(daysInMonth());i%7!==0;i++)
-    totalCells.push(<td className = "border border-secondary" key={(i+1)*100}>{""}</td>);
+    {
+      const id = "cell" + cellNumber;
+      totalCells.push(<td className = "border border-secondary" key={cellNumber} id ={id}>{""}</td>) , cellNumber++;
+    }
 
   totalCells.forEach((cell, i)=>{
     if(i%7 !== 0)
@@ -57,18 +65,18 @@ export default function App() {
         dateContext = moment(dateContext).set("month", month);
         setSelectedDate(dateContext);
       }
-
+      
   return (
     <div id="main">
     <div className = "container">
     <div className = "mx-auto">
-      <h1>Calendar</h1>
+      <h1 id = "heading">Calendar</h1>
     <div className = "d-flex justify-content-around">
-      <select value = {selectedDate.format("MMMM")} onChange={(e)=> {setMonth(moment.months().indexOf(e.target.value))}}>
+      <select id = "month" value = {selectedDate.format("MMMM")} onChange={(e)=> {setMonth(moment.months().indexOf(e.target.value))}}>
         {
           moment.months().map((data)=>{
             return(
-              <option  key={data} >
+              <option id = {data} key={data}>
                   {data}
               </option >
             )
@@ -77,16 +85,16 @@ export default function App() {
       </select >
       {
         showYearInput ?
-        <span onDoubleClick={(e)=>setShowYearInput(false)}>  
+        <span id = "year" onDoubleClick={(e)=>{setShowYearInput(false)}}>  
         {selectedDate.format("Y")}          
         </span>
         :
-        <input defaultValue = {selectedDate.format("Y")}
+        <input id = "yeartextbox" defaultValue = {selectedDate.format("Y")}
           onKeyUp = {(e)=>{
             if(e.which===13) 
             {setShowYearInput(true)}
           }}
-          onChange = {(e)=>alterYear(e.target.value)}
+          onChange = {(e)=>{alterYear(e.target.value)}}
         >
         </input>
       }
@@ -97,8 +105,10 @@ export default function App() {
       <tbody >
         <tr className="bg-dark text-light">
           {moment.weekdaysShort().map((day)=>{
+            cellNumber++;
+            const id = "month"+cellNumber;
             return (
-              <td className = "border border-secondary" key={day}>{day}</td>
+              <td className = "border border-secondary" key={cellNumber} id={id}>{day}</td>
             )
           })}
         </tr>
@@ -107,10 +117,10 @@ export default function App() {
     </table>
     <hr className = "w-75"></hr>
     <div className = "w-75 mx-auto">
-      <button className = "w-25" onClick = {() => alterYear(Number(selectedDate.format("Y"))-1)}>{"<<"}</button>
-      <button className = "w-25" onClick = {() => setMonth(Number(selectedDate.format("M"))-2)}>{"<"}</button>
-      <button className = "w-25" onClick = {() => setMonth(Number(selectedDate.format("M")))}>{">"}</button>
-      <button className = "w-25" onClick = {() => alterYear(Number(selectedDate.format("Y"))+1)}>{">>"}</button>
+      <button className = "w-25" id = "previousYear" onClick = {() => alterYear(Number(selectedDate.format("Y"))-1)}>{"<<"}</button>
+      <button className = "w-25" id = "previousMonth" onClick = {() => setMonth(Number(selectedDate.format("M"))-2)}>{"<"}</button>
+      <button className = "w-25" id = "nextMonth" onClick = {() => setMonth(Number(selectedDate.format("M")))}>{">"}</button>
+      <button className = "w-25" id = "nextYear" onClick = {() => alterYear(Number(selectedDate.format("Y"))+1)}>{">>"}</button>
     </div>
     </div>
   </div>
